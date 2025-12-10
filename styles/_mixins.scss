@@ -1,0 +1,98 @@
+@mixin fluid-text($max: 48, $min: 16) {
+    font-size: clamp(#{$min}px, #{$max / 1440 * 100}vw, #{$max}px);
+}
+
+@mixin reset-link {
+    color: inherit;
+
+    &, 
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+@mixin reset-button {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+@mixin flex-center($isInline: false) {
+    @if isInline {
+        display: inline-flex;
+    } @else {
+        display: flex;
+    }
+
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin abs-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+@mixin square($size) {
+    width: $size;
+    aspect-ratio: 1;
+}
+
+// @mixin aspect-ratio($width, $height) {
+// //   aspect-ratio: $width / $height;
+//   // Fallback (current, using padding hack)
+//     &::before {
+//         float: left;
+//         padding-top: calc(100% * ($height / $width));
+//         content: "";
+//     }
+//     &::after {
+//         display: block;
+//         content: "";
+//         clear: both;
+//     }
+// }
+
+// @mixin aspect-ratio($width, $height: $width){
+//     @supports not (aspect-ratio: 1) {
+//         position: relative;
+//         & {
+//             position: absolute;
+//             inset: 0;
+//         }
+
+//         &::after {
+//             content: "";
+//             position: relative;
+//             padding-top: calc(($height / $width) * 100%);
+//         }
+//     }
+
+//     @supports (aspect-ratio: 1) {
+//         aspect-ratio: #{$width} / #{$height};
+//     }
+// }
+
+@mixin aspect-ratio($width, $height) {
+  position: relative; // Required for positioning child content
+
+  // Fallback for older browsers using padding-top
+  &:before {
+    content: "";
+    display: block;
+    padding-top: calc($height / $width * 100%);
+  }
+
+  // Native aspect-ratio for supported browsers
+  @supports (aspect-ratio: 1 / 1) {
+    aspect-ratio: $width / $height;
+  }
+
+  // Styles for the content inside the aspect ratio container
+  > * {
+    position: absolute;
+    inset: 0;
+  }
+}

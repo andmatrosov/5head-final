@@ -1,0 +1,269 @@
+.prizes {
+    position: relative;
+    background-color: var(--color-blue-dark);
+    z-index: 0;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -33em;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(180deg, rgba(1, 4, 32, 0.00) 0%, rgba(1, 4, 32, 0.60) 10.53%, #010420 32.76%);
+        z-index: 0;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: -33em;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        mask-image: url("../images/hero/pattern.png");
+        mask-position: center center;
+        mask-size: cover;
+        mask-repeat: no-repeat;
+        background-image: linear-gradient(180deg, rgba(5, 11, 63, 0.00) 0%, rgba(5, 11, 63, 0.60) 13.53%, #050B3F 24.01%, #050B3F 87.48%, rgba(5, 11, 63, 0.00) 97.48%);
+    }
+
+    &__inner {
+        position: relative;
+        padding: 5.1875em 0;
+        z-index: 1;
+    }
+}
+
+.prizes__title {
+    font-size: 4.375em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+
+    @include tablet {
+        font-size: 1.875rem;
+    }
+}
+
+.prizes__items {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+
+    @include tablet {
+        flex-direction: column;
+        padding-bottom: 2em;
+        overflow: hidden;
+    }
+}
+
+.prizes__row {
+    display: contents;
+
+    @include tablet {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.prizes__item {
+    $this: &;
+    position: absolute;
+    width: 27.1875em;
+
+     &::after {
+        position: absolute;
+        left: 50%;
+        bottom: 7%;
+        width: 60%;
+        font-size: 0.75em;
+        text-align: center;
+        transform: translate(-50%, 50%);
+        user-select: none;
+    }
+
+    @include tablet {
+        position: relative;
+        width: 17em;
+    }
+}
+
+.prizes__item.main {
+    $this: &;
+    position: relative;
+    width: 51.56919em;
+    #{$this}-text {
+        font-size: 0.75rem;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        width: 60%;
+        background-color: #E5AF34;
+        aspect-ratio: 1;
+        transform: translateX(-50%);
+        background-repeat: no-repeat;
+        filter: blur(4.375em);
+    }
+
+
+    @include tablet {
+        width: 22.56919em;
+        &::before {
+            width: 65%;
+            filter: blur(1.4em);
+        }
+    }
+}
+
+.prize__item:not(.main) {
+    position: absolute;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        width: 70%;
+        background-color: #8552D1;
+        aspect-ratio: 1;
+        transform: translateX(-50%);
+        background-repeat: no-repeat;
+        filter: blur(2.5em);
+    }
+
+     @include tablet {
+        position: initial;
+        width: 15em;
+
+        &::before {
+            top: 17%;
+            width: 65%;
+            filter: blur(1.4em);
+        }
+    }
+}
+
+.prizes__item-1 {
+    @include tablet-above {
+        &::after {
+            content: attr(data-title);
+            font-size: 1.625em;
+        }
+
+        .prizes__item-content{
+            mask-image: url("../images/prizes/prize-1-mask.png");
+            mask-size: 100% 100%;
+            mask-position: 0 0;
+        }
+    }
+}
+
+.prizes__item-2 {
+    @include tablet-above {
+        top: 0;
+        left: 4.4375em;
+
+        &::after {
+            content: attr(data-title);
+            width: 40%;
+        }
+
+        .prizes__item-content{
+            mask-image: url("../images/prizes/prize-2-mask.png");
+            mask-size: 100% 100%;
+            mask-position: 0 0;
+        }
+    }
+}
+
+.prizes__item-3 {
+    @include tablet-above {
+        top: 0;
+        right: 3.6875em;
+
+        &::after {
+            content: attr(data-title);
+        }
+
+        .prizes__item-content {
+            mask-image: url("../images/prizes/prize-3-mask.png");
+            mask-size: 100% 100%;
+            mask-position: 0 0;
+        }
+    }
+}
+
+.prizes__item-4 {
+    @include tablet-above {
+        left: 8.0625em;
+        bottom: -2.85em;
+
+        &::after {
+            content: attr(data-title);
+        }
+
+        .prizes__item-content{
+            mask-image: url("../images/prizes/prize-4-mask.png");
+            mask-size: 100% 100%;
+            mask-position: 0 0;
+        }
+    }
+}
+
+.prizes__item-5 {
+    @include tablet-above {
+        right: 8.125em;
+        bottom: -2.85em;
+
+        &::after {
+            content: attr(data-title);
+        }
+
+        .prizes__item-content{
+            mask-image: url("../images/prizes/prize-5-mask.png");
+            mask-size: 100% 100%;
+            mask-position: 0 0;
+        }
+    }
+}
+
+.prizes__item-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include tablet {
+        pointer-events: none;
+    }
+}
+
+.prizes__item-img {
+    user-select: none;
+
+    img {
+        pointer-events: none;
+    }
+}
+
+.prizes__item-text {
+    position: absolute;
+    bottom: 10%;
+    transform: translateY(100%);
+    text-align: center;
+    font-size: 0.75em;
+    z-index: 10;
+    user-select: none;
+
+    @include tablet-above {
+        display: none;
+    }
+}

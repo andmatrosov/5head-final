@@ -1,0 +1,44 @@
+.ux-select {
+    &__clear {
+        display: none !important;
+    }
+
+    &__head {
+        &::after {
+            background: var(--color-light);
+            mask-image: var(--uxs-dropdown-image);
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: 1.4em 3.3em;
+
+            @include tablet {
+                margin-left: .22em;
+                mask-size: 1.2em 3em;
+            }
+        }
+    }
+}
+
+.ux-select-group {
+    &__list {
+        background-color: var(--color-accent);
+    }
+
+    &__elem {
+        justify-content: center !important;
+        text-align: center;
+        background-color: var(--color-accent);
+
+        @include hover {
+            background-color: var(--color-accent-alt) !important;
+        }
+
+        &::after {
+            content: initial !important;
+        }
+
+        &:not(.-disabled).-selected {
+            background-color: var(--color-accent-alt);
+        }
+    }
+}

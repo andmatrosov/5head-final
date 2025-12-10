@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteCond %{HTTP:Authorization} .+
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# API — отдать как есть
+RewriteRule ^api/ - [L]
+
+# Остальные запросы — в SPA
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule . /index.html [L]

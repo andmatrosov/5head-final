@@ -1,0 +1,161 @@
+.hero {
+    position: relative;
+    width: 100%;
+    background-image: image-set(
+        url("../images/hero/hero-bg.jpg") 1x,
+        url("../images/hero/hero-bg@2x.jpg") 2x
+    );
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 70% center;
+
+    @include tablet {
+        background-image: image-set(
+                        url("../images/hero/hero-bg-xs.jpg") 1x,
+                        url("../images/hero/hero-bg-xs@2x.jpg") 2x
+        );
+        min-height: 49em;
+        display: flex;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 55%;
+        background-image: url("../images/hero/pattern.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 100% 0;
+        mask-image: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+        mask-size: 100%;    
+        z-index: 2;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 50%;
+        background-image: 
+            linear-gradient(270deg, rgba(2, 5, 33, 0.00) 0%, rgba(2, 5, 33, 0.60) 33.45%, #020521 111.14%), 
+            linear-gradient(270deg, rgba(5, 11, 63, 0.00) 0%, rgba(5, 11, 63, 0.60) 33.45%, #050B3F 111.14%);
+        mix-blend-mode: multiply;
+        z-index: 1;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    .container {
+        //height: 100%;
+
+        @include tablet {
+            flex: 1;
+        }
+    }
+}
+
+.hero__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    //height: 100%;
+    //max-height: 100%;
+    padding-bottom: 4.75em;
+    z-index: 2;
+
+    &-text {
+        flex-shrink: 0;
+        text-align: center;
+    }
+
+    @include tablet {
+        width: 100%;
+        height: 100%;
+        padding-bottom: 3.25em;
+        padding-top: .44em;
+    }
+}
+
+.hero__logo {
+    position: relative;
+    //width: min(70vh, 100%);
+    // max-width: 42.0625em;
+    width: min(53vh, 100%);
+    //height:  min(70vh, 100%);
+    height:  min(53vh, 100%);
+    // margin: 0 auto;
+    aspect-ratio: 1;
+    pointer-events: none;
+    user-select: none;
+    flex-shrink: 1;
+
+    @include tablet {
+        width: min(13em, 100%);
+        height: min(13em, 100%);
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -40%;
+        mask-image: url("../images/hero/logo-light.png");
+        mask-position: 0 0;
+        mask-size: 100% 100%;
+        background-color: #3178f2;
+        z-index: -1;
+
+        @include tablet {
+            background-color: #933EE6;
+        }
+    }
+
+    img {
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        aspect-ratio: 1;
+    }
+}
+
+.hero__title {
+    font-size: 1.875em;;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.88em;
+
+    @include tablet {
+        font-size: 1em;
+        margin-bottom: 1em;
+    }
+}
+
+.hero__button {
+    padding-inline: 3.2rem;
+    border-radius: 0;
+    line-height: 1.1;
+    height: 5.0625rem;
+    font-size: 2.25rem;
+    border: .125rem solid var(--color-green-alt);
+    text-transform: uppercase;
+    box-shadow: 0 0 1.375rem 0 rgba(99, 255, 42, 0.85);
+
+    @include tablet {
+        padding-inline: 1.5rem;
+        height: 3.325rem;
+        font-size: 1.5rem;
+    }
+}

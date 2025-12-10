@@ -1,0 +1,47 @@
+.header {
+    position: relative;
+    background-color: var(--color-dark);
+    padding: 1.63em 6em;
+    z-index: 10;
+
+    @include tablet {
+        padding: 1.25em 0;
+    }
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__logo {
+        width: 10.5em;
+        height: 2.29688em;
+
+        img {
+            width: 100%;
+        }
+
+        @include tablet {
+            width: 8.75em;
+            height: 1.91406em;
+        }
+    }
+
+    &__language {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: max-content;
+        height: 2.6875em;
+        background-color: var(--color-accent);
+        color: var(--color-light);
+        font-weight: 700;
+        box-shadow: 0 0 22px 0 rgba(109, 196, 255, 0.85);
+        border: 2px solid var(--color-accent-alt);
+
+        @include tablet {
+            font-size: 0.875em;
+            height: 2.125em;
+        }
+    }
+}

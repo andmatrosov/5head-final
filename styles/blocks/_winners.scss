@@ -1,0 +1,186 @@
+.winners {
+    width: 100%;
+    background-color: #010420;
+    background-image: linear-gradient(180deg, rgba(1, 4, 32, 0.00) 0%, rgba(1, 4, 32, 0.60) 13.53%, #010420 24.76%);
+    padding-bottom: 6.56em;
+
+    &__body {
+        position: relative;
+        width: 100%;
+        width: 97.5625em;
+        height: 34.0625em;
+        margin: 0 auto;
+        padding: 6.1em 4.3em 4.7em;
+        aspect-ratio: 1561/545;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: image-set(
+                url("../images/winners/frame-winners.png") 1x,
+                url("../images/winners/frame-winners@2x.png") 2x
+            );
+            background-repeat: no-repeat;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        @include tablet {
+            width: 100%;
+            height: initial;
+            padding: 2.8em 1.9em 2.2em;
+            aspect-ratio: 370/453;
+
+            &::before {
+                background-image: image-set(
+                    url("../images/winners/frame-winners-mob.png") 1x,
+                    url("../images/winners/frame-winners-mob@2x.png") 2x
+                );
+            }
+        }
+    }
+
+    &--mobile {
+        display: none;
+
+         @include tablet {
+            display: block;
+         }
+    }
+
+    &:not(&--mobile) {
+        @include tablet {
+            display: none;
+        }
+    }
+}
+
+.winners__title {
+    font-size: 4.375em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 4rem;
+
+    @include tablet {
+        word-wrap: wrap;
+        font-size: 1.875rem;
+        margin-bottom: 2rem;
+    }
+}
+
+.winners__inner {
+    padding: 0 5.25em;
+
+    @include tablet {
+        padding: 0 .6em;
+    }
+}
+
+.winners__table {
+    position: relative;
+    width: 100%;
+    //height: 100%;
+    font-size: 1em;
+    border-collapse: collapse;
+    z-index: 2;
+
+    th, td {
+        border: 1px solid var(--color-light);
+    }
+
+    thead {
+        background-color: #010420;
+        z-index: 3;
+
+        tr {
+            height: 4.625em;
+
+             @include tablet {
+                height: 3.44rem;
+             }
+        }
+
+        th {
+            text-transform: uppercase;
+            //font-size: 600px;
+            font-size: 2.25em;
+            padding-inline: 1.4375em;
+            text-align: left;
+            border-bottom: none;
+
+            @include tablet {
+                font-size: 0.875rem;;
+            }
+        }
+    }
+
+    tbody {
+        position: relative;
+        z-index: 2;
+
+        tr {
+            height: 3.69em;
+
+            @include tablet {
+                height: 4.19rem;
+            }
+        }
+
+        td {
+            font-weight: 400;
+            font-size: 1.875em;
+            padding-inline: 1.4375em;
+
+            @include tablet {
+                font-size: 0.75rem;;
+            }
+        }
+    }
+}
+
+.winners {
+    .swiper-slide {
+        background-color: #010420;
+        height: initial;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(180deg, rgba(16, 27, 118, 0.00) 0%, #101B76 111.14%);
+            z-index: -2;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            mask-image: url("../images/hero/pattern.png");
+            mask-position: center center;
+            mask-size: cover;
+            mask-repeat: no-repeat;
+            background-image: linear-gradient(180deg, rgba(16, 27, 118, 0.00) 0%, var(--color-accent) 111.14%);
+            z-index: -1;
+        }
+    }
+}
+
+.winners__navigation {
+    position: relative;
+    width: 100%;
+    @include flex-center(true);
+    gap: 0.88em;
+    margin-top: 1.56em;
+    z-index: 1;
+}
+
+.winners-button {
+    &-next {
+        img {
+            transform: scale(-1, 1)
+        }
+    }
+}

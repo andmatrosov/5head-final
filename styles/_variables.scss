@@ -1,0 +1,44 @@
+:root {
+    --color-dark: #010632;
+    --color-dark-alt: #292A32;
+    --color-blue-dark: #020521;
+    --color-light: #FFFFFF;
+    --color-accent: #14A0FF;
+    --color-accent-alt: #6DC4FF;
+    --color-green: #48C61A;
+    --color-green-alt: #63FF2A;
+    --color-gray: #F3F3F3;
+    --color-gray-alt: #898989;
+
+    --border: 0.1em solid var(--color-dark);
+    --border-radius: 14px;
+    --border-radius-small: 0.38em;
+    --border-radius-large: 45px;
+
+    --shadow: 0 5px 0 0 var(--color-dark);
+
+    --font-family-base: 'Gilroy', sans-serif;
+    --font-base-size: 4.102564102564103vw;
+
+    --container-width: 108rem;
+    --container-padding-x: 20px;
+
+    --section-padding-y: 70px;
+
+    --input-height: 57px;
+    --button-height: 61px;
+
+    --transition-duration: 0.2s
+}
+
+@media screen and (min-width: 768px) and (max-width: 1919px) {
+    :root {
+        --font-base-size: 0.8333333333333334vw;
+    }
+}
+
+@media screen and (min-width:1920px) {
+    :root {
+        --font-base-size: 16px;
+    }
+}

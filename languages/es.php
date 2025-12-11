@@ -153,34 +153,38 @@ $langarr = [
         'gameOver' => [
             [
                 'title' => 'Esta vez no ha acertado. ¡Así es la vida!',
-                'text' => 'El juego no termina aquí. 1xBet le dará un bono por registrarse con el código promocional 5Head. ¡La próxima vez será aún más fuerte!'
+                'text' => 'El juego no termina aquí. 1xBet le dará un bono por registrarse con el código promocional <b>5Head</b>. ¡La próxima vez será aún más fuerte!'
             ],
             [
                 'title' => 'Respuesta incorrecta, pero aún puede arreglarlo',
-                'text' => '¡Consiga un bono por registrarse en 1xBet con el código promocional 5Head y vuelva con más fuerza!'
+                'text' => '¡Consiga un bono por registrarse en 1xBet con el código promocional <b>5Head</b> y vuelva con más fuerza!'
             ]
         ],
         'likeInsani' => [
             'title' => 'Alcanzaste el nivel de insani de MIBR:  8 de 10 correctas',
-            'text' => 'Obtén un bono al registrarte con el código 5head  y mira cómo él mismo pasó este desafío.'
+            'text' => 'Obtén un bono al registrarte con el código <b>5Head</b>  y mira cómo él mismo pasó este desafío.'
+        ],
+        'likeMaj3r' => [
+            'title' => 'Tu puntaje coincide con el de MAJ3R de Aurora Gaming.',
+            'text' => 'MAJ3R, uno de los jugadores más experimentados de Aurora, obtuvo exactamente lo mismo. Tu conocimiento de CS está al nivel de alguien que ha jugado más partidos icónicos de los que la mayoría de los fans ha visto en highlights. <br>¡Mira cómo MAJ3R enfrentó el desafío de James Banks!'
         ],
         'coolRes' => [
             'title' => '¡Gran resultado!',
-            'text' => 'Obtén un bono personal al registrarte con el código 5Head y mejora tu winrate con 1xBet.'
+            'text' => 'Obtén un bono personal al registrarte con el código <b>5Head</b> y mejora tu winrate con 1xBet.'
         ],
         'finish' => [
             [
                 'title' => '¡Ha respondido a todas las preguntas!',
-                'text' => 'Pronto anunciaremos los resultados del sorteo. Hasta entonces, ¡obtenga su bono utilizando el código promocional 5Head!'
+                'text' => 'Pronto anunciaremos los resultados del sorteo. Hasta entonces, ¡obtenga su bono utilizando el código promocional <b>5Head</b>!'
             ],
             [
                 'title' => 'Todas sus respuestas son correctas. Ha obtenido un 100 % en el desafío.',
-                'text' => 'Pronto anunciaremos los resultados del sorteo. Hasta entonces, ¡obtenga su bono utilizando el código promocional 5Head!'
+                'text' => 'Pronto anunciaremos los resultados del sorteo. Hasta entonces, ¡obtenga su bono utilizando el código promocional <b>5Head</b>!'
             ],
         ],
         'timeOver' => [
             'title' => '¡Se acabó el tiempo!',
-            'text' => 'Obtenga un bono personal por registrarse usando el código promocional 5Head y gane más con 1xBet.'
+            'text' => 'Obtenga un bono personal por registrarse usando el código promocional <b>5Head</b> y gane más con 1xBet.'
         ]
     ]
 ];

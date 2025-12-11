@@ -45,7 +45,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+    // Prizes hover effect
+    const prizeCards = document.querySelectorAll(".prizes__item:not(.cloned) [data-effect]");
+    const match = window.matchMedia("(min-width: 768px)");
+    const tiltSetting = {
+        glare: true,
+        "max-glare": 0.5,
+    };
+
+    let tiltDestroyed = false;
+
+    const init = () => VanillaTilt.init(prizeCards, tiltSetting);
+    init();
+
+    function toggleVanillaTilt(reload = true) {
+        if (reload) {
+            document.location.reload();
+        }
+        if(match.matches) {
+            init();
+        } else {
+            // Уничтожаем только инициализированные элементы
+            prizeCards.forEach(card => {
+                if(card && card.vanillaTilt) {
+                    // card.vanillaTilt.destroy();
+                    card.vanillaTilt.reset();
+                    tiltDestroyed = true;
+                    // card.querySelector('.js-tilt-glare').remove();
+                }
+            });
+        }
+    }
+
+    match.addEventListener('change', toggleVanillaTilt);
+
+    toggleVanillaTilt(false);
+
+
+
+    // Winners
+
+    const winnersBlocks = document.querySelectorAll(".winners");
+
+    if(winnersBlocks.length) {
+        winnersBlocks.forEach(el => {
+            const winnersSliderEl = el.querySelector('.swiper');
+
+            const winnersSlider = new Swiper(winnersSliderEl, {
+                sliderPerView: 1,
+                navigation: {
+                    prevEl: el.querySelector('.winners-button-prev') || null,
+                    nextEl: el.querySelector('.winners-button-next') || null
+                },
+                effect: 'coverflow'
+            });
+        })
+    }
+})
+
+window.addEventListener('load', e => {
     // Divider scroll
+    const match = window.matchMedia("(min-width: 768px)");
     let iconScrollers = {};
 
     function initiateLogoScroller(container = document) {
@@ -69,9 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Clone logos until the total width is at least twice the viewport width
                 while (totalWidth < containerWidth * 2) {
                     rowItems.forEach(item => {
-                    const clone = item.cloneNode(true);
-                    row.appendChild(clone);
-                    totalWidth += item.offsetWidth;
+                        const clone = item.cloneNode(true);
+                        row.appendChild(clone);
+                        totalWidth += item.offsetWidth;
                     });
                 }
 
@@ -111,127 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize on page load
     initiateLogoScroller(document.querySelector('.divider'));
 
-    // Re-initiate in AJAX overlay
-    function loadNewContentViaAjax() {
-        setTimeout(() => {
-            const ajaxContainer = document.querySelector(".ajax-overlay");
-            if (ajaxContainer) {
-            initiateLogoScroller(ajaxContainer);
-            }
-        }, 1000);
-    }
-
-    // initSoundManager
-
-    window.sounds = new SoundManager({
-            start: 'sounds/start.mp3',
-            selected: 'sounds/selected.mp3',
-            correct: 'sounds/correct.mp3',
-            wrong: 'sounds/wrong.mp3',
-            wrongHard: 'sounds/wrongHard.mp3',
-            next: {
-                src: ['sounds/next.mp3'],
-                volume: 0.4
-            },
-            hintHalf: 'sounds/50-50.mp3',
-            hintCall: 'sounds/50-50.mp3',
-            call: 'sounds/call.mp3',
-            pickUp: 'sounds/pickUp.mp3',
-            timer: 'sounds/timer.mp3',
-            timerHard: 'sounds/timerHard.mp3',
-            timerLeft: 'sounds/timerLeft.mp3',
-            bgMusic: {
-                src: ['sounds/background.mp3'],
-                loop: true,
-                volume: 0.3
-            }
-        });
-
-
-    // startQuiz
-    const startBtns = document.querySelectorAll('.js-start');
-
-    startBtns.forEach(startBtn => {
-        startBtn.addEventListener('click', startBtnHandler)
-    });
-
-    function startBtnHandler() {
-        if(window.isFinished) return;
-
-        if(localStorage.getItem('userId')) {
-            window.quizInstance = new Quiz();
-            return
-        }
-
-        window.sounds.playMusic('start');
-        const registerPopup = document.getElementById('register');
-        registerPopup.showModal();
-    }
-    const matchMediaQuizWrapp = window.matchMedia('(max-width: 767px)');
-
-    function initSliderWrapper() {
-        const quizWrapperSliderEl = document.querySelector('.js-quiz-wrapper-slider');
-
-        if(matchMediaQuizWrapp.matches) {
-            window.quizeWrapperSlider = new Swiper(quizWrapperSliderEl, {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                on: {
-                    resize(swiper) {
-                        debounce(() => {
-                            swiper.update();
-                        }, 500)
-                    }
-                }
-            })
-        } else {
-            if(window.quizeWrapperSlider) {
-                window.quizeWrapperSlider.destroy();
-                window.quizeWrapperSlider = null
-            }
-        }
-    }
-
-    initSliderWrapper();
-
-    matchMediaQuizWrapp.addEventListener('change', initSliderWrapper);
-
-
-    // Prizes hover effect
-    const prizeCards = document.querySelectorAll(".prizes__item:not(.cloned) [data-effect]");
-    const match = window.matchMedia("(min-width: 768px)");
-    const tiltSetting = {
-        glare: true,
-        "max-glare": 0.5,
-    };
-
-    let tiltDestroyed = false;
-
-    const init = () => VanillaTilt.init(prizeCards, tiltSetting);
-    init();
-
-    function toggleVanillaTilt(reload = true) {
-        if (reload) {
-            document.location.reload();
-        }
-        if(match.matches) {
-            init();
-        } else {
-            // Уничтожаем только инициализированные элементы
-            prizeCards.forEach(card => {
-                if(card && card.vanillaTilt) {
-                    // card.vanillaTilt.destroy();
-                    card.vanillaTilt.reset();
-                    tiltDestroyed = true;
-                    // card.querySelector('.js-tilt-glare').remove();
-                }
-            });
-        }
-    }
-
-    match.addEventListener('change', toggleVanillaTilt);
-
-    toggleVanillaTilt(false);
 
 
     // Prizes scroll
@@ -324,27 +263,81 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    match.addEventListener('change', togglePrizeScroll);
 
     togglePrizeScroll();
 
+    // initSoundManager
 
-    // Winners
+    window.sounds = new SoundManager({
+        start: 'sounds/start.mp3',
+        selected: 'sounds/selected.mp3',
+        correct: 'sounds/correct.mp3',
+        wrong: 'sounds/wrong.mp3',
+        wrongHard: 'sounds/wrongHard.mp3',
+        next: {
+            src: ['sounds/next.mp3'],
+            volume: 0.4
+        },
+        hintHalf: 'sounds/50-50.mp3',
+        hintCall: 'sounds/50-50.mp3',
+        call: 'sounds/call.mp3',
+        pickUp: 'sounds/pickUp.mp3',
+        timer: 'sounds/timer.mp3',
+        timerHard: 'sounds/timerHard.mp3',
+        timerLeft: 'sounds/timerLeft.mp3',
+        bgMusic: {
+            src: ['sounds/background.mp3'],
+            loop: true,
+            volume: 0.3
+        }
+    });
 
-    const winnersBlocks = document.querySelectorAll(".winners");
 
-    if(winnersBlocks.length) {
-        winnersBlocks.forEach(el => {
-            const winnersSliderEl = el.querySelector('.swiper');
+    // startQuiz
+    const startBtns = document.querySelectorAll('.js-start');
 
-            const winnersSlider = new Swiper(winnersSliderEl, {
-                sliderPerView: 1,
-                navigation: {
-                    prevEl: el.querySelector('.winners-button-prev') || null,
-                    nextEl: el.querySelector('.winners-button-next') || null
-                },
-                effect: 'coverflow'
-            });
-        })
+    startBtns.forEach(startBtn => {
+        startBtn.addEventListener('click', startBtnHandler)
+    });
+
+    function startBtnHandler(e) {
+        if(window.isFinished) return;
+
+        if(localStorage.getItem('userId')) {
+            window.quizInstance = new Quiz();
+            return
+        }
+
+        window.sounds.playMusic('start');
+        const registerPopup = document.getElementById('register');
+        registerPopup.showModal();
     }
+    const matchMediaQuizWrapp = window.matchMedia('(max-width: 767px)');
+
+    function initSliderWrapper() {
+        const quizWrapperSliderEl = document.querySelector('.js-quiz-wrapper-slider');
+
+        if(matchMediaQuizWrapp.matches) {
+            window.quizeWrapperSlider = new Swiper(quizWrapperSliderEl, {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                on: {
+                    resize(swiper) {
+                        debounce(() => {
+                            swiper.update();
+                        }, 500)
+                    }
+                }
+            })
+        } else {
+            if(window.quizeWrapperSlider) {
+                window.quizeWrapperSlider.destroy();
+                window.quizeWrapperSlider = null
+            }
+        }
+    }
+
+    initSliderWrapper();
+
+    matchMediaQuizWrapp.addEventListener('change', initSliderWrapper);
 })

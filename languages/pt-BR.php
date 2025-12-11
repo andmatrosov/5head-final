@@ -115,7 +115,7 @@ $langarr = [
             'A BiG e a MOUZ percorreram a menor distância para chegar à sede do torneio.',
             'Um dos jogadores dessa equipe atualmente está jogando em uma equipe brasileira. ',
             'Embora em termos numéricos eles realmente sejam os maiores, o tempo todo eles estão contratando jogadores gringos para suas equipes.',
-            'Это его первый сезон на тир-1 сцене.', // TODO: перевод
+            'Esta é a primeira temporada dele na cena de Tier 1.',
             'Lembre-se de que haverá duas equipes da Mongólia, e de que nem todas as equipes brasileiras têm jogadores gringos.',
             'O mesmo número de jogadores é oriundo da Estônia e da Espanha.',
             'Também corresponde ao número de vezes que s1mple venceu o Major.',
@@ -153,34 +153,38 @@ $langarr = [
         'gameOver' => [
             [
                 'title' => 'Não foi dessa vez. Acontece!',
-                'text' => 'Mas o jogo não acaba aqui. A 1xBet te dá um bônus por registrar-se usando o código promocional 5Head. Pode apostar que você volta ainda mais forte!'
+                'text' => 'Mas o jogo não acaba aqui. A 1xBet te dá um bônus por registrar-se usando o código promocional <b>5Head</b>. Pode apostar que você volta ainda mais forte!'
             ],
             [
                 'title' => 'Resposta errada, mas dá para virar o jogo',
-                'text' => 'Garanta um bônus ao criar sua conta na 1xBet usando o código promocional 5Head e volte para conquistar o topo!'
+                'text' => 'Garanta um bônus ao criar sua conta na 1xBet usando o código promocional <b>5Head</b> e volte para conquistar o topo!'
             ]
         ],
         'likeInsani' => [
             'title' => 'Chegou ao nível do insani da MIBR:  8 de 10 respostas corretas',
-            'text' => 'Ganhe um bônus ao se registrar com o código 5head e veja como ele mesmo completou esse desafio!'
+            'text' => 'Ganhe um bônus ao se registrar com o código <b>5Head</b> e veja como ele mesmo completou esse desafio!'
+        ],
+        'likeMaj3r' => [
+            'title' => 'Seu resultado é igual ao do MAJ3R da Aurora Gaming.',
+            'text' => 'Exatamente o mesmo número de perguntas que o MAJ3R acertou — um dos jogadores mais experientes da Aurora Gaming. Seus conhecimentos sobre o jogo estão no mesmo nível de um player que participou de mais partidas lendárias do que muitos fãs conseguiram assistir em highlights. Dá uma olhada em como o MAJ3R encarou o desafio do James Banks!'
         ],
         'coolRes' => [
             'title' => 'Ótimo resultado!',
-            'text' => 'Ganhe um bônus personalizado ao se registrar com o código 5Head e aumente sua taxa de vitória com a 1xBet.'
+            'text' => 'Ganhe um bônus personalizado ao se registrar com o código <b>5Head</b> e aumente sua taxa de vitória com a 1xBet.'
         ],
         'finish' => [
             [
                 'title' => 'Você mandou bem em todas as perguntas!',
-                'text' => 'O resultado do sorteio será anunciado em breve. Enquanto isso, pegue seu bônus com o código promocional 5Head!'
+                'text' => 'O resultado do sorteio será anunciado em breve. Enquanto isso, pegue seu bônus com o código promocional <b>5Head</b>!'
             ],
             [
                 'title' => '100% de acerto! Você dominou o desafio.',
-                'text' => 'O resultado do sorteio será revelado em breve. Até lá, garanta seu bônus usando o código 5Head!'
+                'text' => 'O resultado do sorteio será revelado em breve. Até lá, garanta seu bônus usando o código <b>5Head</b>!'
             ],
         ],
         'timeOver' => [
             'title' => 'Tempo esgotado!',
-            'text' => 'Receba um bônus exclusivo ao se registrar usando o código promocional 5Head e aumente sua chance de vitória com a 1xBet.'
+            'text' => 'Receba um bônus exclusivo ao se registrar usando o código promocional <b>5Head</b> e aumente sua chance de vitória com a 1xBet.'
         ]
     ]
 ];

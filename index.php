@@ -1,5 +1,6 @@
 <?php
 $link = 'https://cropped.link/5headreg';
+$videoInsani = 'https://www.youtube.com/watch?v=3CeV3dv6q7c';
 
 // Получаем язык браузера
 $acceptLanguage = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? 'en';
@@ -77,6 +78,20 @@ if ($response !== false) {
 }
 
 $chunks = !empty($winners) ? array_chunk($winners, 5) : [];
+
+$urlStatus = getCurrentDomain() . '/backend/api/get-contest-status.php';
+$responseStatus = @file_get_contents($urlStatus);
+
+$status = true;
+
+if ($responseStatus !== false) {
+    $result = json_decode($responseStatus, true);
+
+    // Проверяем структуру ответа
+    if (isset($result['success']) && $result['success'] === true && isset($result['data'])) {
+        $status = $result['is_active'];
+    }
+}
 ?>
 
 <!doctype html>
@@ -91,12 +106,14 @@ $chunks = !empty($winners) ? array_chunk($winners, 5) : [];
         <?php
             require_once 'partials/hero.php';
             require_once 'partials/divider.php';
-            require_once 'partials/quiz.php';
+            if($status) {
+                require_once 'partials/quiz.php';
+            }
             require_once 'partials/prizes.php';
 //            if(isset($_COOKIE['finished'])) {
-//            if(false) {
+            if(!$status) {
                 require_once 'partials/winners.php';
-//            }
+            }
         ?>
     </main>
 

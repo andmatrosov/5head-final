@@ -30,11 +30,11 @@ class Quiz {
 
         this.sounds.fadeOut('start', 500);
 
-        this.startQuiz();
-        this.attachEventListeners();
+        this.#startQuiz();
+        this.#attachEventListeners();
     }
 
-    initSlider() {
+    #initSlider() {
         const self = this;
 
         this.slider = new Swiper(this.sliderElement, {
@@ -43,25 +43,25 @@ class Quiz {
             allowTouchMove: false,
             on: {
                 init(swiper) {
-                    self.getCurrentSlideData(swiper);
+                    self.#getCurrentSlideData(swiper);
                 },
                 slideChangeTransitionEnd(swiper) {
-                    self.getCurrentSlideData(swiper);
-                    self.resetTimer();
+                    self.#getCurrentSlideData(swiper);
+                    self.#resetTimer();
                 }
             }
         });
     }
 
-    attachEventListeners() {
+    #attachEventListeners() {
         const quizSlider = document.querySelector('.quiz__test-slider');
 
         if (!quizSlider) return;
 
-        quizSlider.addEventListener('click', (e) => this.handleAnswerClick(e), true);
+        quizSlider.addEventListener('click', (e) => this.#handleAnswerClick(e), true);
     }
 
-    handleAnswerClick(e) {
+    #handleAnswerClick(e) {
         const target = e.target;
 
         if (!target.matches('.quiz__answers-item') && !target.closest('.quiz__answers-item')) {
@@ -81,24 +81,24 @@ class Quiz {
         this.disableInteractionsAfterSelect(answerEl);
 
         if (questionAnswers[answerOption].correct) {
-            this.handleCorrectAnswer(answerEl, questionId);
+            this.#handleCorrectAnswer(answerEl, questionId);
         } else {
-            this.handleWrongAnswer(answerEl, target, questionAnswers, questionVideo);
+            this.#handleWrongAnswer(answerEl, target, questionAnswers, questionVideo);
         }
     }
 
-    startQuiz() {
-        this.startScreen.setAttribute('hidden', '')
-        this.quizScreen.removeAttribute('hidden');
+    #startQuiz() {
+        this.startScreen.style.display = 'none';
+        this.quizScreen.removeAttribute('style');
 
-        this.initSlider();
-        this.showCurrentStep(0)
+        this.#initSlider();
+        this.#showCurrentStep(0)
         this.currentStep = 1
     }
 
-    handleCorrectAnswer(answerEl, idx) {
+    #handleCorrectAnswer(answerEl, idx) {
         answerEl.classList.add('-selected');
-        this.stopTimer();
+        this.#stopTimer();
         this.isAnswerSelected = true;
 
         this.sounds.play('selected', {
@@ -122,14 +122,14 @@ class Quiz {
                 if(this.slider.slides[idx + 1]) {
 
                     if(isMobile()) {
-                        this.showNextStepMobile(() => {
+                        this.#showNextStepMobile(() => {
                             this.sounds.stop('correct');
                             this.sounds.play('next');
-                            this.showCurrentStep(idx + 1);
+                            this.#showCurrentStep(idx + 1);
                             this.slider.slideNext(400);
                         });
                     } else {
-                        this.showCurrentStep(idx + 1);
+                        this.#showCurrentStep(idx + 1);
                         this.sounds.play('next');
                         const timerShowNext = setTimeout(() => {
                             this.slider.slideNext(400);
@@ -140,7 +140,7 @@ class Quiz {
                     localStorage.setItem('scores', this.currentStep);
                     this.currentStep++;
                 } else {
-                    this.end('finish')
+                    this.#end('finish')
                 }
 
                 clearTimeout(timerChangeQuestion);
@@ -150,7 +150,7 @@ class Quiz {
         }, 2000);
     }
 
-    handleWrongAnswer(answerEl, target, questionAnswers, video) {
+    #handleWrongAnswer(answerEl, target, questionAnswers, video) {
         const correctOption = Object.entries(questionAnswers).find(([k, v]) => v.correct);
         const [option] = correctOption;
 
@@ -160,40 +160,42 @@ class Quiz {
 
         answerEl.classList.add('-selected');
         this.isAnswerSelected = true;
-        this.stopTimer();
+        this.#stopTimer();
 
         setTimeout(() => {
             correctEl.classList.add('-accepted');
             answersWrapper.querySelectorAll('.quiz__answers-item')
                 .forEach(i => i.setAttribute('disabled', ''));
 
-            this.end('wrong');
+            this.#end('wrong');
             if(this.currentStep >= 7) {
                 this.sounds.play('wrongHard');
             } else {
                 this.sounds.play('wrong');
             }
 
-            if(isMobile()) {
-                video[1].pause();
-                video[1].currentTime = 0;
-            } else {
-                video[0].pause();
-                video[0].currentTime = 0;
-            }
+            video.pause();
+            video.currentTime = 0;
+
         }, 2000);
     }
 
-    getCurrentSlideData(swiper) {
+    #getCurrentSlideData(swiper) {
         const index = swiper.activeIndex;
         const slide = swiper.slides[index];
-        const video = slide.querySelectorAll('video');
+        const video = slide.querySelector('video');
+        const nextVideo = swiper.slides[swiper.activeIndex + 1]?.querySelector('video');
         const questionWrapp = slide.querySelector('.quiz__question');
         const hintHalf = questionWrapp.querySelector('.quiz__hints-half');
         const hintCall = questionWrapp.querySelector('.quiz__hints-call');
         const answers = slide.querySelectorAll('.quiz__answers-item');
         const timestamps = window.quiz.questions[index].timestamps;
         const isFirstQuestion = index === 0;
+
+        lazyLoad(video);
+        if(nextVideo) {
+            lazyLoad(nextVideo);
+        }
 
         new Promise(resolve => {
             this.sounds.fadeOut('next', 2500)
@@ -202,27 +204,27 @@ class Quiz {
             }, 2500)
         });
 
-        this.showAnswers(video, answers, timestamps, isFirstQuestion, questionWrapp, hintHalf, hintCall);
+        this.#showAnswers(video, answers, timestamps, isFirstQuestion, questionWrapp, hintHalf, hintCall);
     }
 
-    showAnswers(video, elements, timestamps, isFirst = false, questionElement, hintHalf, hintCall) {
+    #showAnswers(video, elements, timestamps, isFirst = false, questionElement, hintHalf, hintCall) {
         if(isMobile()) {
             if(isFirst) {
-                video[1].play();
+                video.play();
             } else {
                 setTimeout(() => {
-                    video[1].play();
+                    video.play();
                 }, this.mobQuizNextStepDuration)
             }
         } else {
-            video[0].play();
+            video.play();
         }
 
         const triggered = new Set();
         const tolerance = 0.3;
 
         hintHalf.addEventListener('click', () => {
-            this.hideWrongAnswers(questionElement);
+            this.#hideWrongAnswers(questionElement);
         });
 
         hintCall.addEventListener('click', () => {
@@ -230,10 +232,9 @@ class Quiz {
         });
 
         const timeUpdateHandler = () => {
-            const currentTime = isMobile() ? video[1].currentTime : video[0].currentTime;
+            const currentTime = video.currentTime;
 
             timestamps.forEach((timestamp, index) => {
-
                 if (Math.abs(currentTime - timestamp) <= tolerance && !triggered.has(index)) {
                     elements[index].querySelector('.quiz__answers-text').classList.remove('hidden');
                     triggered.add(index);
@@ -248,26 +249,21 @@ class Quiz {
             hintCall.removeAttribute('disabled');
 
             if(!this.isAnswerSelected) {
-                this.startTimer(50, () => {
-                    if(isMobile()) {
-                        video[1].pause();
-                        video[1].currentTime = 0;
-                    } else {
-                        video[0].pause();
-                        video[0].currentTime = 0;
-                    }
-                    this.end('timeleft');
+                this.#startTimer(30, () => {
+
+                    video.pause();
+                    video.currentTime = 0;
+
+                    this.#end('timeleft');
                 });
             }
         };
 
-        video.forEach(v => {
-            v.addEventListener('timeupdate', timeUpdateHandler);
-            v.addEventListener('ended', endedHandler);
-        })
+        video.addEventListener('timeupdate', timeUpdateHandler);
+        video.addEventListener('ended', endedHandler);
     }
 
-    showCurrentStep(step) {
+    #showCurrentStep(step) {
         this.quizSteps.forEach(i => i.classList.remove('active'));
 
         if(this.quizSteps[step]) {
@@ -275,7 +271,7 @@ class Quiz {
         }
     }
 
-    showNextStepMobile(cb) {
+    #showNextStepMobile(cb) {
         window.quizeWrapperSlider.slideNext(600);
 
         const timeout = setTimeout(() => {
@@ -290,7 +286,7 @@ class Quiz {
         }, this.mobQuizNextStepDuration / 2)
     }
 
-    hideWrongAnswers(questionElement) {
+    #hideWrongAnswers(questionElement) {
         const questionId = Number(questionElement.dataset.question);
         const questionAnswers = window.quiz.questions[questionId].answers;
 
@@ -393,13 +389,13 @@ class Quiz {
         buttons.forEach(b => b.setAttribute('disabled', ''));
     }
 
-    startTimer(seconds, onComplete) {
+    #startTimer(seconds, onComplete) {
         if (!this.secElement || !this.msecElement) return;
 
         let totalMs = seconds * 100;
 
         // Очищаем предыдущий интервал
-        this.stopTimer();
+        this.#stopTimer();
         if(this.currentStep >= 7) {
             this.sounds.play('timerHard')
         } else {
@@ -422,7 +418,7 @@ class Quiz {
             if (totalMs <= 0) {
                 totalMs = 0;
                 updateDisplay();
-                this.stopTimer(true);
+                this.#stopTimer(true);
 
                 if (typeof onComplete === 'function') {
                     onComplete();
@@ -435,7 +431,7 @@ class Quiz {
         }, 10);
     }
 
-    stopTimer(timerEnd = false) {
+    #stopTimer(timerEnd = false) {
         if (this.timerInterval) {
             clearInterval(this.timerInterval);
             this.timerInterval = null;
@@ -451,7 +447,7 @@ class Quiz {
         }
     }
 
-    resetTimer() {
+    #resetTimer() {
         if (!this.secElement || !this.msecElement) return;
 
         this.secElement.innerText = '30';
@@ -476,9 +472,9 @@ class Quiz {
         })
     }
 
-    end(trigger) {
-        this.quizScreen.setAttribute('hidden', '');
-        this.finishedScreen.removeAttribute('hidden');
+    #end(trigger) {
+        this.quizScreen.style.display = 'none';
+        this.finishedScreen.removeAttribute('style');
         localStorage.setItem('isFinished', true);
         this.quizSteps.forEach(s => s.classList.remove('active'));
 
@@ -487,6 +483,7 @@ class Quiz {
         const coolResPopup = document.getElementById('coolRes');
         const finishPopup = document.getElementById('finish');
         const likeInsaniPopup = document.getElementById('likeInsani');
+        const likeMaj3rPopup = document.getElementById('likeMaj3r');
 
         document.cookie = "finished=true";
         this.saveResults();
@@ -501,7 +498,7 @@ class Quiz {
             } else if(this.currentStep === 9){
                 likeInsaniPopup.showModal();
             } else if(this.currentStep === 10){
-                coolResPopup.showModal();
+                likeMaj3rPopup.showModal();
             }
         } else if(trigger === 'finish') {
             finishPopup.showModal();

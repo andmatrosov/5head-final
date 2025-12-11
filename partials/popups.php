@@ -1,6 +1,7 @@
 <?php
 /**
  * @var array $langarr;
+ * @var string $videoInsani;
  */
 
 $hints = [
@@ -130,10 +131,39 @@ $link = 'https://cropped.link/5headreg';
                 </button>
             </form>
 
+            <?php
+            $randomChoice1 = rand(0, 1);
+            if ($randomChoice1 === 0) {
+            ?>
+                <div class="popup__content">
+                    <h3><?= $langarr['popups']['likeInsani']['title'] ?></h3>
+                    <p><?= $langarr['popups']['likeInsani']['text'] ?></p>
+                    <a class="button" href="<?= $videoInsani ?>" target="_blank"><?= $langarr['buttons']['goAway'] ?></a>
+                </div>
+            <?php } else { ?>
+                <div class="popup__content">
+                    <h3><?= $langarr['popups']['likeInsani']['title'] ?></h3>
+                    <p><?= $langarr['popups']['likeInsani']['text'] ?></p>
+                    <a class="button" href="<?= $videoInsani ?>" target="_blank"><?= $langarr['buttons']['goAway'] ?></a>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</dialog>
+
+<dialog class="mobile-overlay" id="likeMaj3r">
+    <div class="mobile-overlay__body">
+        <div class="popup popup__gameover">
+            <form class="mobile-overlay__close-button-wrapper" method="dialog">
+                <button class="mobile-overlay__close-button cross-button" type="submit">
+                    <span class="visually-hidden">Close navigation menu</span>
+                </button>
+            </form>
+
             <div class="popup__content">
-                <h3><?= $langarr['popups']['likeInsani']['title'] ?></h3>
-                <p><?= $langarr['popups']['likeInsani']['text'] ?></p>
-                <a class="button" href="<?= $link ?>" target="_blank"><?= $langarr['buttons']['goAway'] ?></a>
+                <h3><?= $langarr['popups']['likeMaj3r']['title'] ?></h3>
+                <p><?= $langarr['popups']['likeMaj3r']['text'] ?></p>
+                <a class="button" href="<?= $videoInsani ?>" target="_blank"><?= $langarr['buttons']['goAway'] ?></a>
             </div>
         </div>
     </div>

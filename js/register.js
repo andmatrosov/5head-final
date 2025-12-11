@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     registerForm.addEventListener('submit', async function(e) {
         e.preventDefault();
+        e.target.querySelector('button').setAttribute('disabled', 'disabled');
         const registerModal = document.getElementById('register')
         const target = e.target;
         const data = new FormData(target);

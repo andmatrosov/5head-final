@@ -10,19 +10,23 @@ $dividerItems = [
         'images/divider/icons/8'
     ];
 
+
+/**
+ * @var string $link;
+ */
 ?>
 
 <div class="divider">
     <div class="divider__wrapper" role="marquee">
 
-        <?php foreach($dividerItems as $item): ?>
+        <?php foreach($dividerItems as $i => $item): ?>
 
-        <div class="divider__item">
+        <<?= $i == 7 ? "a href=\"$link\" target=\"_blank\" " : "div"?> class="divider__item">
             <picture>
                 <source srcset="<?= $item ?>.webp 1x, <?= $item ?>@2x.webp 2x" type="image/webp">
-                <img src="<?= $item ?>.png" alt="" srcset="<?= $item ?>@2x.png 2x"/>
+                <img src="<?= $item ?>.png" alt="" srcset="<?= $item ?>@2x.png 2x" loading="lazy"/>
             </picture>
-        </div>
+        </<?= $i == 7 ? "a" : "div"?>>
 
         <?php endforeach; ?>
 

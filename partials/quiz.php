@@ -289,7 +289,7 @@ $quiz = [
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="quiz__test">
-                                <div class="quiz__screen quiz__screen-start" <?= isset($_COOKIE['finished']) ? 'hidden' : '' ?>>
+                                <div class="quiz__screen quiz__screen-start" style="<?= isset($_COOKIE['finished']) ? 'display: none' : '' ?>">
                                     <div class="quiz__screen-content">
                                         <h3>
                                             <?= $langarr['quiz']['start'] ?>
@@ -297,7 +297,7 @@ $quiz = [
                                         <button class="button js-start" type="button"><?= $langarr['buttons']['checkKnowledge'] ?></button>
                                     </div>
                                 </div>
-                                <div class="quiz__screen quiz__screen-finish" <?= isset($_COOKIE['finished']) ? '' : 'hidden' ?>>
+                                <div class="quiz__screen quiz__screen-finish" style="<?= isset($_COOKIE['finished']) ? '' : 'display: none'  ?>">
                                     <div class="quiz__screen-content">
                                         <h3>
                                             <?= $langarr['quiz']['finish'] ?>
@@ -305,7 +305,7 @@ $quiz = [
                                         <a class="button" href="<?= $link ?>" target="_blank"><?= $langarr['buttons']['getBonus'] ?></a>
                                     </div>
                                 </div>
-                                <div class="quiz__test-slider" hidden>
+                                <div class="quiz__test-slider" style="display: none;">
                                     <div class="swiper">
                                         <div class="swiper-wrapper">
                                             <?php foreach( $quiz['questions'] as $i => $question ): ?>
@@ -313,24 +313,14 @@ $quiz = [
                                                     <div class="quiz__test-item">
                                                         <video
                                                             class="quiz__video"
-                                                            playsinline="playsinline"
-                                                            disablepictureinpicture="disablepictureinpicture"
-                                                            disableremoteplayback="disableremoteplayback"
+                                                            playsinline
+                                                            disablepictureinpicture
+                                                            disableremoteplayback
                                                             aria-hidden="true"
-                                                            preload="metadata">
-                                                            <source src="video/horizontal/<?= $question['video'] ?>.mp4" type="video/mp4"/>
-                                                            <source src="video/horizontal/<?= $question['video'] ?>.webm" type="video/webm"/>
-                                                        </video>
-                                                        <video
-                                                            class="quiz__video -mobile"
-                                                            playsinline="playsinline"
-                                                            disablepictureinpicture="disablepictureinpicture"
-                                                            disableremoteplayback="disableremoteplayback"
-                                                            aria-hidden="true"
-                                                            preload="metadata">
-                                                            <source src="video/vertical/<?= $question['video'] ?>.mp4" type="video/mp4"/>
-                                                            <source src="video/vertical/<?= $question['video'] ?>.webm" type="video/webm"/>
-                                                        </video>
+                                                            data-src-horizontal="video/horizontal/<?= $question['video'] ?>.webm"
+                                                            data-src-vertical="video/vertical/<?= $question['video'] ?>.webm"
+                                                            poster="images/quiz/poster-hor.jpg"
+                                                        ></video>
 
                                                         <div class="quiz__question" data-question="<?= $i ?>">
                                                             <div class="quiz__hints">

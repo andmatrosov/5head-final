@@ -9,7 +9,7 @@ $langarr = [
     ],
     'buttons' => [
         'checkKnowledge' => 'BİLGİNİZİ TEST EDİN',
-        'getBonus' => 'Забрать бонус',
+        'getBonus' => 'OBTENER BONO',
         'goAway' => 'BAŞLAYIN'
     ],
     'hero' => [
@@ -153,34 +153,38 @@ $langarr = [
         'gameOver' => [
             [
                 'title' => 'Bu sefer bilemediniz. Hayat böyle!',
-                'text' => 'Oyun burada bitmiyor. 1xBet, 5Head promosyon koduyla kayıt olduğunuzda size bir bonus verecek. Bir dahaki sefere çok daha güçlü döneceğinize eminiz!'
+                'text' => 'Oyun burada bitmiyor. 1xBet, <b>5Head</b> promosyon koduyla kayıt olduğunuzda size bir bonus verecek. Bir dahaki sefere çok daha güçlü döneceğinize eminiz!'
             ],
             [
                 'title' => 'Yanlış cevap, ama bunu telafi edebilirsiniz',
-                'text' => "1xBet'e 5Head promosyon koduyla kayıt olup bonus alın ve daha güçlü geri dönün!"
+                'text' => "1xBet'e <b>5Head</b> promosyon koduyla kayıt olup bonus alın ve daha güçlü geri dönün!"
             ]
         ],
         'likeInsani' => [
             'title' => 'MIBR’den insani seviyesine ulaştın:  10 sorudan 8 doğru',
-            'text' => '5head promosyon koduyla kayıt olurken bonus kap ve bu meydan okumayı onun nasıl geçtiğine göz at!'
+            'text' => '<b>5Head</b> promosyon koduyla kayıt olurken bonus kap ve bu meydan okumayı onun nasıl geçtiğine göz at!'
+        ],
+        'likeMaj3r' => [
+            'title' => 'Sonucun Aurora Gaming’den MAJ3R ile birebir aynı!',
+            'text' => 'MAJ3R de tam olarak bu kadar doğru cevapladı. Oyundaki bilgin, kariyerinde çoğu hayranın izlediğinden больше efsanevi maça çıkmış bir oyuncunun seviyesinde. <br>James Banks’in hazırladığı challenge’ı MAJ3R nasıl geçti, bir göz at!'
         ],
         'coolRes' => [
             'title' => 'Harika sonuç!',
-            'text' => '5Head promosyon koduyla kayıt olurken kişisel bonusunu  al ve 1xBet ile kazanma oranını yükselt.'
+            'text' => '<b>5Head</b> promosyon koduyla kayıt olurken kişisel bonusunu  al ve 1xBet ile kazanma oranını yükselt.'
         ],
         'finish' => [
             [
                 'title' => 'Tüm soruların üstesinden geldiniz!',
-                'text' => 'Çekiliş sonuçlarını yakında açıklayacağız. Bu arada 5Head promosyon koduyla bonusunuzu alın!'
+                'text' => 'Çekiliş sonuçlarını yakında açıklayacağız. Bu arada <b>5Head</b> promosyon koduyla bonusunuzu alın!'
             ],
             [
                 'title' => 'Tüm cevaplarınız doğru. Yarışmada %100 yaptınız.',
-                'text' => 'Çekiliş sonuçlarını yakında açıklayacağız. Bu arada 5Head promosyon koduyla bonusunuzu alın!'
+                'text' => 'Çekiliş sonuçlarını yakında açıklayacağız. Bu arada <b>5Head</b> promosyon koduyla bonusunuzu alın!'
             ],
         ],
         'timeOver' => [
             'title' => 'Süre doldu!',
-            'text' => '5Head promosyon koduyla kayıt olarak size özel bir bonus alın ve 1xBet ile kazanma oranınızı artırın.'
+            'text' => '<b>5Head</b> promosyon koduyla kayıt olarak size özel bir bonus alın ve 1xBet ile kazanma oranınızı artırın.'
         ]
     ]
 ];

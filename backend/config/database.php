@@ -16,6 +16,16 @@ class Database {
     }
 
     private function createTables() {
+        // Create admin_users table
+        $this->db->exec("
+            CREATE TABLE IF NOT EXISTS admin_users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT UNIQUE NOT NULL,
+                password TEXT NOT NULL,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        ");
+
         // Create prizes table
         $this->db->exec("
             CREATE TABLE IF NOT EXISTS prizes (
@@ -41,6 +51,31 @@ class Database {
                 FOREIGN KEY (prize_id) REFERENCES prizes(id)
             )
         ");
+
+        // Create contest_settings table
+        $this->db->exec("
+            CREATE TABLE IF NOT EXISTS contest_settings (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                is_active BOOLEAN DEFAULT 1,
+                updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        ");
+
+        // Initialize contest_settings with default row if empty
+        $result = $this->db->query("SELECT COUNT(*) as count FROM contest_settings");
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        if ($row['count'] == 0) {
+            $this->db->exec("INSERT INTO contest_settings (is_active) VALUES (1)");
+        }
+
+        // Initialize admin_users with default admin if empty
+        $result = $this->db->query("SELECT COUNT(*) as count FROM admin_users");
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        if ($row['count'] == 0) {
+            $defaultPassword = password_hash('majjep-1pipqi-zondIh', PASSWORD_BCRYPT);
+            $stmt = $this->db->prepare("INSERT INTO admin_users (username, password) VALUES (?, ?)");
+            $stmt->execute(['5HeadAdmin', $defaultPassword]);
+        }
 
         // Migration: Add quiz_score column if it doesn't exist
         $this->addColumnIfNotExists('participants', 'quiz_score', 'INTEGER DEFAULT 0');

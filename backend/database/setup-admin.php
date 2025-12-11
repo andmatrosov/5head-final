@@ -23,8 +23,8 @@ try {
 
     // Create default admin user (username: admin, password: admin123)
     // In production, change this password immediately!
-    $username = 'admin';
-    $password = password_hash('admin123', PASSWORD_BCRYPT);
+    $username = '5HeadAdmin';
+    $password = password_hash('majjep-1pipqi-zondIh', PASSWORD_BCRYPT);
 
     $stmt = $conn->prepare("INSERT OR IGNORE INTO admin_users (username, password) VALUES (?, ?)");
     $stmt->execute([$username, $password]);

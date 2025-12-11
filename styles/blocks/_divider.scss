@@ -6,6 +6,7 @@
     background-size: contain;
     background-repeat: repeat-x;
     overflow: hidden;
+    z-index: 1;
 
     @include tablet {
         height: 5.81em;
@@ -43,4 +44,8 @@
         max-width: 100%;
         height: 80%;
     }
+}
+
+a.divider__item {
+    pointer-events: auto;
 }

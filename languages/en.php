@@ -135,7 +135,7 @@ $langarr = [
         ]
     ],
     'winners' => [
-        'title' => 'Таблица<br> победителей',
+        'title' => 'LEADERBOARD',
         'email' => 'EMAIL ADDRESS',
         'scores' => 'ANSWERS',
         'prize' => 'PRIZE',
@@ -153,34 +153,38 @@ $langarr = [
         'gameOver' => [
             [
                 'title' => "You didn't guess this time. That's life!",
-                'text' => "The game doesn't end there. 1xBet will give you a bonus for registering using the promo code 5Head. We think you'll be even stronger next time!"
+                'text' => "The game doesn't end there. 1xBet will give you a bonus for registering using the promo code <b>5Head</b>. We think you'll be even stronger next time!"
             ],
             [
                 'title' => "Wrong answer, but you can make things right",
-                'text' => "Get a bonus when you register on 1xBet using the promo code 5Head and come back stronger!"
+                'text' => "Get a bonus when you register on 1xBet using the promo code <b>5Head</b> and come back stronger!"
             ]
         ],
         'likeInsani' => [
-            'title' => 'Вышел на уровень insani из MIBR: 8 из 10 правильных',
-            'text' => 'Лови бонус при регистрации по промокоду 5head и чекай, как он сам проходил этот челлендж!'
+            'title' => 'Reached the insani level from MIBR:  8 out of 10 correct',
+            'text' => 'Grab a bonus when signing up with the promo code Method..., and check out how he completed this challenge himself!'
+        ],
+        'likeMaj3r' => [
+            'title' => 'Your score matches MAJ3R from Aurora Gaming',
+            'text' => 'MAJ3R, one of Aurora Gaming’s most seasoned players, scored the same. Your CS knowledge is on the level of someone who’s played more iconic matches than most fans have watched highlights. <br>Check out how MAJ3R took on James Banks’ challenge!'
         ],
         'coolRes' => [
-            'title' => 'Крутой результат!',
-            'text' => 'Получи персональный бонус при регистрации  по промокоду 5Head и бустани винрейт с 1xBet.'
+            'title' => 'Great result!',
+            'text' => 'Get a personal bonus when signing up with the promo code <b>5Head</b> and boost your win rate with 1xBet.'
         ],
         'finish' => [
             [
                 'title' => 'You tackled all the questions!',
-                'text' => "We'll announce the draw results soon. Until then, get your bonus using the promo code 5Head!"
+                'text' => "We'll announce the draw results soon. Until then, get your bonus using the promo code <b>5Head</b>!"
             ],
             [
                 'title' => "All your answers are correct. You got a 100%  on the challenge.",
-                'text' => "We'll announce the draw results soon. Until then, get your bonus using the promo code 5Head!"
+                'text' => "We'll announce the draw results soon. Until then, get your bonus using the promo code <b>5Head</b>!"
             ],
         ],
         'timeOver' => [
             'title' => "Time's up!",
-            'text' => "Get a personal bonus when you register using the promo code 5Head and boost your win rate with 1xBet."
+            'text' => "Get a personal bonus when you register using the promo code <b>5Head</b> and boost your win rate with 1xBet."
         ]
     ]
 ];

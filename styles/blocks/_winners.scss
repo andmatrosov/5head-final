@@ -12,14 +12,15 @@
         margin: 0 auto;
         padding: 6.1em 4.3em 4.7em;
         aspect-ratio: 1561/545;
-
         &::before {
             content: "";
             position: absolute;
             inset: 0;
             background-image: image-set(
+                url("../images/winners/frame-winners.webp") 1x type("image/webp"),
+                url("../images/winners/frame-winners@2x.webp") 2x type("image/webp"),
                 url("../images/winners/frame-winners.png") 1x,
-                url("../images/winners/frame-winners@2x.png") 2x
+                url("../images/winners/frame-winners@2x.png") 2x,
             );
             background-repeat: no-repeat;
             background-size: contain;
@@ -35,8 +36,10 @@
 
             &::before {
                 background-image: image-set(
+                    url("../images/winners/frame-winners-mob.webp") 1x type("image/webp"),
+                    url("../images/winners/frame-winners-mob@2x.webp") 2x type("image/webp"),
                     url("../images/winners/frame-winners-mob.png") 1x,
-                    url("../images/winners/frame-winners-mob@2x.png") 2x
+                    url("../images/winners/frame-winners-mob@2x.png") 2x,
                 );
             }
         }

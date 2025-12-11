@@ -40,13 +40,15 @@
                 <div class="prizes__item-content" data-effect>
                     <div class="prizes__item-img">
                         <picture>
-                            <source srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>-mob.png 1x, images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>.png 2x" type="image/png" media="(max-width: 767px)">
                             <source srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>-mob.webp 1x, images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>.webp 2x" type="image/webp" media="(max-width: 767px)">
-                            <source srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>.webp 1x, images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>@2x.png 2x" type="image/webp">
+                            <source srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>-mob.png 1x, images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>.png 2x" type="image/png" media="(max-width: 767px)">
+                            <source srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>.webp 1x, images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>@2x.webp 2x" type="image/webp">
                             <img
                                 src="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>.png"
                                 srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prizes[0]['img'] ?>@2x.png 2x"
-                                alt="<?= $prizes[0]['text'] ?>"/>
+                                alt="<?= $prizes[0]['text'] ?>"
+                                loading="lazy"
+                            />
                         </picture>
                     </div>
                     <p class="prizes__item-text">
@@ -61,10 +63,10 @@
                             <div class="prizes__item-content" data-effect>
                                 <div class="prizes__item-img">
                                     <picture>
-                                        <source srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>-mob.png 1x, images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>.png 2x" type="image/png" media="(max-width: 767px)">
                                         <source srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>-mob.webp 1x, images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>.webp 2x" type="image/webp" media="(max-width: 767px)">
-                                        <source srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>.webp 1x, images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>@2x.png 2x" type="image/webp">
-                                        <img src="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>.png" srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>@2x.png 2x" alt="<?= $prize['alt'] ?>"/>
+                                        <source srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>-mob.png 1x, images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>.png 2x" type="image/png" media="(max-width: 767px)">
+                                        <source srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>.webp 1x, images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>@2x.webp 2x" type="image/webp">
+                                        <img src="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>.png" srcset="images/prizes/<?= $_SESSION['lang'] ?>/<?= $prize['img'] ?>@2x.png 2x" alt="<?= $prize['alt'] ?>" loading="lazy"/>
                                     </picture>
                                 </div>
                                 <p class="prizes__item-text">

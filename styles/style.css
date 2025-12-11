@@ -588,14 +588,15 @@ h4 {
 .hero {
   position: relative;
   width: 100%;
-  background-image: image-set(url("../images/hero/hero-bg.jpg") 1x, url("../images/hero/hero-bg@2x.jpg") 2x);
+  background-image: image-set(url("../images/hero/hero-bg.webp") 1x type("image/webp"), url("../images/hero/hero-bg@2x.webp") 2x type("image/webp"), url("../images/hero/hero-bg.jpg") 1x, url("../images/hero/hero-bg@2x.jpg") 2x);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 70% center;
+  z-index: 1;
 }
 @media (max-width: 767px) {
   .hero {
-    background-image: image-set(url("../images/hero/hero-bg-xs.jpg") 1x, url("../images/hero/hero-bg-xs@2x.jpg") 2x);
+    background-image: image-set(url("../images/hero/hero-bg-xs.jpg") 1x type("image/webp"), url("../images/hero/hero-bg-xs@2x.jpg") 2x type("image/webp"), url("../images/hero/hero-bg-xs.jpg") 1x, url("../images/hero/hero-bg-xs@2x.jpg") 2x);
     min-height: 49em;
     display: flex;
   }
@@ -607,7 +608,7 @@ h4 {
   left: 0;
   height: 100%;
   width: 55%;
-  background-image: url("../images/hero/pattern.png");
+  background-image: image-set(url("../images/hero/pattern.webp") type("image/webp"), url("../images/hero/pattern.png"));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 100% 0;
@@ -741,6 +742,7 @@ h4 {
   background-size: contain;
   background-repeat: repeat-x;
   overflow: hidden;
+  z-index: 1;
 }
 @media (max-width: 767px) {
   .divider {
@@ -779,9 +781,13 @@ h4 {
   height: 80%;
 }
 
+a.divider__item {
+  pointer-events: auto;
+}
+
 .quiz {
   padding: 60px 0;
-  background-image: image-set(url("../images/quiz/quiz-bg.png") 1x, url("../images/quiz/quiz-bg@2x.png") 2x);
+  background-image: image-set(url("../images/quiz/quiz-bg.webp") 1x type("image/webp"), url("../images/quiz/quiz-bg@2x.webp") 2x type("image/webp"), url("../images/quiz/quiz-bg.png") 1x, url("../images/quiz/quiz-bg@2x.png") 2x);
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -833,9 +839,19 @@ h4 {
   background-image: linear-gradient(180deg, rgba(16, 27, 118, 0) 0%, rgba(16, 27, 118, 0.6) 33.45%, #101B76 111.14%);
   background-size: 100% 300%;
   background-position: 0 0;
-  aspect-ratio: 16/9;
   overflow: hidden;
   z-index: -2;
+  position: relative;
+}
+.quiz__screen:before {
+  content: "";
+  display: block;
+  padding-top: 59.375%;
+}
+@supports (aspect-ratio: 1/1) {
+  .quiz__screen {
+    aspect-ratio: 1.6842105263;
+  }
 }
 .quiz__screen::before {
   content: "";
@@ -849,7 +865,17 @@ h4 {
 }
 @media (max-width: 767px) {
   .quiz__screen {
-    aspect-ratio: 371/654;
+    position: relative;
+  }
+  .quiz__screen:before {
+    content: "";
+    display: block;
+    padding-top: 176.2803234501%;
+  }
+  @supports (aspect-ratio: 1/1) {
+    .quiz__screen {
+      aspect-ratio: 0.5672782875;
+    }
   }
 }
 
@@ -896,9 +922,19 @@ h4 {
 .quiz__test {
   position: relative;
   width: 74%;
-  aspect-ratio: 1290/919;
-  padding: 9% 6.3% 10%;
+  padding: 9% 6.3% 9%;
+  position: relative;
   z-index: 2;
+}
+.quiz__test:before {
+  content: "";
+  display: block;
+  padding-top: 71.2403100775%;
+}
+@supports (aspect-ratio: 1/1) {
+  .quiz__test {
+    aspect-ratio: 1.4036996736;
+  }
 }
 .quiz__test::before {
   content: "";
@@ -906,7 +942,7 @@ h4 {
   inset: 0;
   width: 100%;
   height: 100%;
-  background-image: image-set(url("../images/quiz/frame.png") 1x, url("../images/quiz/frame@2x.png") 2x);
+  background-image: image-set(url("../images/quiz/frame.webp") 1x type("image/webp"), url("../images/quiz/frame@2x.webp") 2x type("image/webp"), url("../images/quiz/frame.png") 1x, url("../images/quiz/frame@2x.png") 2x);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -916,37 +952,58 @@ h4 {
   .quiz__test {
     width: 100%;
     padding: 12% 7.2% 12%;
-    aspect-ratio: 16/9;
+    position: relative;
+  }
+  .quiz__test:before {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+  }
+  @supports (aspect-ratio: 1/1) {
+    .quiz__test {
+      aspect-ratio: 1.7777777778;
+    }
   }
   .quiz__test::before {
-    background-image: image-set(url("../images/quiz/frame-mob.png") 1x, url("../images/quiz/frame-mob@2x.png") 2x);
+    background-image: image-set(url("../images/quiz/frame-mob.webp") 1x type("image/webp"), url("../images/quiz/frame-mob@2x.webp") 2x type("image/webp"), url("../images/quiz/frame-mob.png") 1x, url("../images/quiz/frame-mob@2x.png") 2x);
   }
 }
 
 .quiz__test-slider {
   position: relative;
   width: 100%;
-  height: 100%;
   z-index: -2;
 }
 
 .quiz__video {
   position: relative;
   z-index: -2;
-  aspect-ratio: 16/9;
+  position: relative;
+}
+.quiz__video:before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+@supports (aspect-ratio: 1/1) {
+  .quiz__video {
+    aspect-ratio: 1.7777777778;
+  }
 }
 @media (max-width: 767px) {
   .quiz__video {
-    display: none;
+    display: block;
+    position: relative;
   }
-}
-.quiz__video.-mobile {
-  display: block;
-  aspect-ratio: 9/16;
-}
-@media (min-width: 768px) {
-  .quiz__video.-mobile {
-    display: none;
+  .quiz__video:before {
+    content: "";
+    display: block;
+    padding-top: 177.7777777778%;
+  }
+  @supports (aspect-ratio: 1/1) {
+    .quiz__video {
+      aspect-ratio: 0.5625;
+    }
   }
 }
 
@@ -982,7 +1039,7 @@ h4 {
   top: 0;
   width: 5.8125rem;
   height: 3.125rem;
-  transform: translateY(-100%);
+  transform: translateY(-50%);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -1010,6 +1067,7 @@ h4 {
   .quiz__hints-call {
     width: 3.25rem;
     height: 1.9375rem;
+    transform: translateY(-100%);
   }
 }
 
@@ -1123,99 +1181,85 @@ h4 {
   padding: 0;
   background-color: transparent;
   border: none;
+  position: relative;
   display: flex;
   align-items: center;
   height: 3.1875rem;
   padding-left: 2.31rem;
-  background-image: url("../images/svg/answer-bg.svg");
+  user-select: none;
+  cursor: default;
+  --accepted-opacity: 0;
+}
+.quiz__answers-item::before, .quiz__answers-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  user-select: none;
+  pointer-events: none;
+}
+.quiz__answers-item::before {
+  background-image: url("../images/svg/answer-bg.svg");
+}
+.quiz__answers-item::after {
+  background-image: url("../images/svg/answer-bg-accepted.svg");
+  opacity: 0;
+}
+.quiz__answers-item > * {
+  position: relative;
+  z-index: 1;
+}
+.quiz__answers-item.-selected::before {
+  background-image: url("../images/svg/answer-bg-selected.svg");
+}
+.quiz__answers-item.-selected:not(:disabled):hover::before {
+  background-image: url("../images/svg/answer-bg-selected.svg");
+}
+.quiz__answers-item:not(:disabled):not(.-selected):hover::before {
+  background-image: url("../images/svg/answer-bg-hover.svg");
+}
+.quiz__answers-item:disabled {
   cursor: default;
-}
-.quiz__answers-item:not(:disabled) {
-  cursor: pointer;
-}
-@media (hover: hover) {
-  .quiz__answers-item:not(:disabled):hover {
-    background-image: url("../images/svg/answer-bg-hover.svg");
-    transition: background-image var(--transition-duration);
-  }
-}
-@media (hover: hover) and (max-width: 767px) {
-  .quiz__answers-item:not(:disabled):hover {
-    background-image: url("../images/svg/answer-bg-hover-mob.svg");
-  }
-}
-@media (hover: none) {
-  .quiz__answers-item:not(:disabled):active {
-    background-image: url("../images/svg/answer-bg-hover.svg");
-    transition: background-image var(--transition-duration);
-  }
-}
-@media (hover: none) and (max-width: 767px) {
-  .quiz__answers-item:not(:disabled):active {
-    background-image: url("../images/svg/answer-bg-hover-mob.svg");
-  }
+  pointer-events: none;
 }
 .quiz__answers-item.-accepted {
   animation: accepted 2s forwards;
-  transition: initial;
-}
-.quiz__answers-item.-selected {
-  background-image: url("../images/svg/answer-bg-selected.svg");
-  transition: initial;
-}
-@media (hover: hover) {
-  .quiz__answers-item.-selected:hover {
-    background-image: url("../images/svg/answer-bg-selected.svg");
-  }
-}
-@media (hover: hover) and (max-width: 767px) {
-  .quiz__answers-item.-selected:hover {
-    background-image: url("../images/svg/answer-bg-selected-mob.svg");
-  }
-}
-@media (hover: none) {
-  .quiz__answers-item.-selected:active {
-    background-image: url("../images/svg/answer-bg-selected.svg");
-  }
-}
-@media (hover: none) and (max-width: 767px) {
-  .quiz__answers-item.-selected:active {
-    background-image: url("../images/svg/answer-bg-selected-mob.svg");
-  }
-}
-@media (max-width: 767px) {
-  .quiz__answers-item.-selected {
-    background-image: url("../images/svg/answer-bg-selected-mob.svg");
-    transition: initial;
-  }
 }
 @media (max-width: 767px) {
   .quiz__answers-item {
-    position: relative;
-    font-size: 0.75rem;
     height: 2.81rem;
+  }
+  .quiz__answers-item::before {
     background-image: url("../images/svg/answer-bg-mob.svg");
     background-size: 100% 100%;
   }
-  .quiz__answers-item::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    width: 150%;
-    height: 0.1rem;
-    background-color: var(--color-light);
-    transform: translate(-50%, -50%);
-    z-index: -1;
+  .quiz__answers-item::after {
+    background-image: url("../images/svg/answer-bg-accepted-mob.svg");
+    background-size: 100% 100%;
   }
-  .quiz__answers-item::before {
-    top: 50%;
+  .quiz__answers-item:not(:disabled):not(.-selected):hover::before {
+    background-image: url("../images/svg/answer-bg-hover-mob.svg");
+  }
+  .quiz__answers-item.-selected::before {
+    background-image: url("../images/svg/answer-bg-selected-mob.svg");
   }
 }
+.quiz__answers-item::after {
+  opacity: var(--accepted-opacity);
+}
+.quiz__answers-item.-accepted {
+  animation: accepted 2s forwards;
+}
 
+@keyframes accepted {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    --accepted-opacity: 1;
+  }
+  10%, 30%, 50%, 70%, 90% {
+    --accepted-opacity: 0;
+  }
+}
 .quiz__answers-item span {
   font-weight: 600;
 }
@@ -1230,74 +1274,6 @@ h4 {
   transition: opacity var(--transition-duration);
 }
 
-@keyframes accepted {
-  0% {
-    background-image: url("../images/svg/answer-bg-accepted.svg");
-    @media (max-width: 767px) {
-      background-image: url("../images/svg/answer-bg-accepted-mob.svg");
-    }
-  }
-  10% {
-    background-image: url("../images/svg/answer-bg.svg");
-    @media (max-width: 767px) {
-      background-image: url("../images/svg/answer-bg-mob.svg");
-    }
-  }
-  20% {
-    background-image: url("../images/svg/answer-bg-accepted.svg");
-    @media (max-width: 767px) {
-      background-image: url("../images/svg/answer-bg-accepted-mob.svg");
-    }
-  }
-  30% {
-    background-image: url("../images/svg/answer-bg.svg");
-    @media (max-width: 767px) {
-      background-image: url("../images/svg/answer-bg-mob.svg");
-    }
-  }
-  40% {
-    background-image: url("../images/svg/answer-bg-accepted.svg");
-    @media (max-width: 767px) {
-      background-image: url("../images/svg/answer-bg-accepted-mob.svg");
-    }
-  }
-  50% {
-    background-image: url("../images/svg/answer-bg.svg");
-    @media (max-width: 767px) {
-      background-image: url("../images/svg/answer-bg-mob.svg");
-    }
-  }
-  60% {
-    background-image: url("../images/svg/answer-bg-accepted.svg");
-    @media (max-width: 767px) {
-      background-image: url("../images/svg/answer-bg-accepted-mob.svg");
-    }
-  }
-  70% {
-    background-image: url("../images/svg/answer-bg.svg");
-    @media (max-width: 767px) {
-      background-image: url("../images/svg/answer-bg-mob.svg");
-    }
-  }
-  80% {
-    background-image: url("../images/svg/answer-bg-accepted.svg");
-    @media (max-width: 767px) {
-      background-image: url("../images/svg/answer-bg-accepted-mob.svg");
-    }
-  }
-  90% {
-    background-image: url("../images/svg/answer-bg.svg");
-    @media (max-width: 767px) {
-      background-image: url("../images/svg/answer-bg-mob.svg");
-    }
-  }
-  100% {
-    background-image: url("../images/svg/answer-bg-accepted.svg");
-    @media (max-width: 767px) {
-      background-image: url("../images/svg/answer-bg-accepted-mob.svg");
-    }
-  }
-}
 .quiz__steps {
   position: relative;
   width: 22%;
@@ -1317,17 +1293,13 @@ h4 {
     aspect-ratio: 0.5535211268;
   }
 }
-.quiz__steps > * {
-  position: absolute;
-  inset: 0;
-}
 .quiz__steps::before {
   content: "";
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  background-image: image-set(url("../images/quiz/frame-2.png") 1x, url("../images/quiz/frame-2@2x.png") 2x);
+  background-image: image-set(url("../images/quiz/frame-2.png") 1x, url("../images/quiz/frame-2@2x.png") 2x, url("../images/quiz/frame-2.webp") 1x type("image/webp"), url("../images/quiz/frame-2@2x.webp") 2x type("image/webp"));
   background-size: contain;
   background-repeat: no-repeat;
   pointer-events: none;
@@ -1351,12 +1323,8 @@ h4 {
       aspect-ratio: 0.6412478336;
     }
   }
-  .quiz__steps > * {
-    position: absolute;
-    inset: 0;
-  }
   .quiz__steps::before {
-    background-image: image-set(url("../images/quiz/frame-2-mob.png") 1x, url("../images/quiz/frame-2-mob@2x.png") 2x);
+    background-image: image-set(url("../images/quiz/frame-2-mob.webp") 1x type("image/webp"), url("../images/quiz/frame-2-mob@2x.webp") 2x type("image/webp"), url("../images/quiz/frame-2-mob.png") 1x, url("../images/quiz/frame-2-mob@2x.png") 2x);
   }
 }
 
@@ -1732,7 +1700,7 @@ h4 {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: image-set(url("../images/winners/frame-winners.png") 1x, url("../images/winners/frame-winners@2x.png") 2x);
+  background-image: image-set(url("../images/winners/frame-winners.webp") 1x type("image/webp"), url("../images/winners/frame-winners@2x.webp") 2x type("image/webp"), url("../images/winners/frame-winners.png") 1x, url("../images/winners/frame-winners@2x.png") 2x);
   background-repeat: no-repeat;
   background-size: contain;
   pointer-events: none;
@@ -1746,7 +1714,7 @@ h4 {
     aspect-ratio: 370/453;
   }
   .winners__body::before {
-    background-image: image-set(url("../images/winners/frame-winners-mob.png") 1x, url("../images/winners/frame-winners-mob@2x.png") 2x);
+    background-image: image-set(url("../images/winners/frame-winners-mob.webp") 1x type("image/webp"), url("../images/winners/frame-winners-mob@2x.webp") 2x type("image/webp"), url("../images/winners/frame-winners-mob.png") 1x, url("../images/winners/frame-winners-mob@2x.png") 2x);
   }
 }
 .winners--mobile {
